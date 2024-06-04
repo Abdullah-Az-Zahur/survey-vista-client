@@ -5,15 +5,15 @@ import { useQuery } from '@tanstack/react-query';
 const useSurvey = () => {
     const axiosPublic = useAxiosPublic();
 
-    const {data: survey = [], isPending: loading, refetch} = useQuery({
-        queryKey: ['survey'],
+    const {data: surveys = [], isPending: loading, refetch} = useQuery({
+        queryKey: ['surveys'],
         queryFn: async()=> {
             const res = await axiosPublic.get('/survey');
             return res.data;
         }
     })
 
-    return [survey, loading, refetch];
+    return [surveys, loading, refetch];
 };
 
 export default useSurvey;
