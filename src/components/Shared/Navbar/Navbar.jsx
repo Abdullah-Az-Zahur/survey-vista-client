@@ -5,13 +5,19 @@ import { Link } from 'react-router-dom'
 import avatarImg from '../../../assets/image/avater/user.png'
 import toast from 'react-hot-toast'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
-import useAuth from '../../../hooks/useAuth'
 import HostModal from '../../Modal/HostRequestModal'
+import useAuth from '../../../hooks/useAuth'
 
 const Navbar = () => {
   const axiosSecure = useAxiosSecure()
   const { user, logOut } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
+
+  const handleLogOut = () => {
+    logOut()
+        .then(() => { })
+        .catch(error => console.log(error));
+}
 
   // for modal
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -115,7 +121,7 @@ const Navbar = () => {
                           Dashboard
                         </Link>
                         <div
-                          onClick={logOut}
+                          onClick={handleLogOut}
                           className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
                         >
                           Logout
