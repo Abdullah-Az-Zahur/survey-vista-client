@@ -4,7 +4,8 @@ import ErrorPage from "../page/ErrorPage/ErrorPage";
 import Login from "../page/Login/Login";
 import SignUp from "../page/SignUp/SignUp";
 import Home from "../page/Home/Home/Home";
-import StartSurvey from "../page/StartSurvey/StartSurvey";
+import SurveyDetails from "../page/Shared/SurveyDetails/SurveyDetails";
+import AllSurvey from "../page/AllSurvey/AllSurvey";
 
 export const router = createBrowserRouter([
   {
@@ -17,9 +18,13 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
+        path:'/allSurveys',
+        element:<AllSurvey></AllSurvey>
+      },
+      {
         path: "/survey/:id",
         element: (
-          <StartSurvey></StartSurvey>
+          <SurveyDetails></SurveyDetails>
         ),
       },
     ],

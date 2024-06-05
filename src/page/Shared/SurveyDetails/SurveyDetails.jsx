@@ -1,10 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import LoadingSpinner from "../../components/Shared/LoadingSpinner";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 
-const StartSurvey = () => {
+const SurveyDetails = () => {
   const { id } = useParams();
   const axiosCommon = useAxiosPublic();
 
@@ -25,9 +25,9 @@ const StartSurvey = () => {
 
   return (
     <div>
-      <h2>{survey?.Title}</h2>
+      <h2>{survey?.title}</h2>
     </div>
   );
 };
 
-export default StartSurvey;
+export default SurveyDetails;

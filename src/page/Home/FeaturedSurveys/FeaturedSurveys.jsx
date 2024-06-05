@@ -3,7 +3,9 @@ import SurveyCard from "../../../components/Shared/SurveyCard/SurveyCard";
 import useSurvey from "../../../hooks/useSurvey";
 
 const FeaturedSurveys = () => {
-  const [surveys] = useSurvey();
+  const [data] = useSurvey();
+  const sortedData = data.sort((a, b) => b.vote - a.vote);
+  const surveys = sortedData.slice(0, 6);
 
   return (
     <div>
@@ -16,9 +18,7 @@ const FeaturedSurveys = () => {
           ))}
         </div>
       ) : (
-        <div className="flex items-center justify-center min-h-[calc(100vh-300px)]">
-          
-        </div>
+        <div className="flex items-center justify-center min-h-[calc(100vh-300px)]"></div>
       )}
     </div>
   );
