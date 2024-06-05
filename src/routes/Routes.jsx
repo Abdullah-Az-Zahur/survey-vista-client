@@ -6,6 +6,7 @@ import SignUp from "../page/SignUp/SignUp";
 import Home from "../page/Home/Home/Home";
 import SurveyDetails from "../page/Shared/SurveyDetails/SurveyDetails";
 import AllSurvey from "../page/AllSurvey/AllSurvey";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -18,13 +19,15 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path:'/allSurveys',
-        element:<AllSurvey></AllSurvey>
+        path: "/allSurveys",
+        element: <AllSurvey></AllSurvey>,
       },
       {
         path: "/survey/:id",
         element: (
-          <SurveyDetails></SurveyDetails>
+          <PrivateRoute>
+            <SurveyDetails></SurveyDetails>
+          </PrivateRoute>
         ),
       },
     ],

@@ -4,7 +4,7 @@ import useSurvey from "../../../hooks/useSurvey";
 
 const FeaturedSurveys = () => {
   const [data] = useSurvey();
-  const sortedData = data.sort((a, b) => b.vote - a.vote);
+  const sortedData = data.sort((a, b) => b.options.yes - a.options.yes);
   const surveys = sortedData.slice(0, 6);
 
   return (

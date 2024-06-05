@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SurveyCard = ({ survey }) => {
-  const { title, description, vote } = survey;
+  const { title, description, options } = survey;
   console.log(survey);
   return (
     <div>
@@ -12,9 +12,10 @@ const SurveyCard = ({ survey }) => {
           <h2 className="card-title">{title}</h2>
           <p>{description}</p>
           <div className="card-actions justify-end">
-            <p>Vote : {vote}</p>
+            <p>Yes : {options.yes}</p>
+            <p>no : {options.no}</p>
             <Link to={`/survey/${survey?._id}`} className="btn btn-primary">
-              Start
+              Details
             </Link>
           </div>
         </div>
