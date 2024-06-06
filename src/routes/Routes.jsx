@@ -11,6 +11,7 @@ import Dashboard from "../layouts/Dashboard";
 import Common from "../page/Dashboard/Common/Common";
 import CreateSurvey from "../page/Dashboard/Surveyor/CreateSurvey";
 import MyListings from "../page/Dashboard/Surveyor/MyListings";
+import UpdateSurvey from "../page/Dashboard/Surveyor/UpdateSurvey";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyListings></MyListings>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'update-survey/:id',
+        element: (
+          <PrivateRoute>
+            <UpdateSurvey></UpdateSurvey>
           </PrivateRoute>
         ),
       },

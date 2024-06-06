@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import SurveyDataRow from "../../../components/TableRows/SurveyDataRow";
+import Swal from "sweetalert2";
 
 const MyListings = () => {
   const { user } = useAuth();
@@ -20,6 +21,34 @@ const MyListings = () => {
       return res.data;
     },
   });
+
+  const handleDelete = (survey) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosSecure.delete(`/my-listings/${survey._id}`);
+        // console.log(res.data);
+        if (res.data.deletedCount > 0) {
+          // refetch to update the ui
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${survey.title} has been deleted`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    });
+  };
 
   console.log(surveys);
 
@@ -47,17 +76,21 @@ const MyListings = () => {
             {/* row 1 */}
             {surveys.map((survey) => (
               <tr key={survey._id}>
-               
                 <td>{survey?.title}</td>
                 <td>{survey?.category}</td>
                 <th>
                   <button className="btn btn-ghost btn-xs">details</button>
                 </th>
                 <th>
-                  <button className="btn btn-ghost btn-xs">Delete</button>
+                  <button
+                    onClick={() => handleDelete(survey)}
+                    className="btn btn-ghost btn-xs"
+                  >
+                    Delete
+                  </button>
                 </th>
                 <th>
-                  <button className="btn btn-ghost btn-xs">Update</button>
+                  <button  className="btn btn-ghost btn-xs">Update</button>
                 </th>
               </tr>
             ))}
