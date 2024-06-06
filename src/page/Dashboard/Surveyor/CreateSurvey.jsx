@@ -1,11 +1,31 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useMutation } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const CreateSurvey = () => {
   const { user } = useAuth();
   const [startDate, setStartDate] = useState(new Date());
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const { mutateAsync } = useMutation({
+    mutationFn: async (surveyData) => {
+      const { data } = await axiosSecure.post(`/create`, surveyData);
+      return data;
+    },
+    onSuccess: () => {
+      console.log("Data Saved Successfully");
+      toast.success("Survey Added Successfully!");
+      // navigate("/dashboard/my-listings");
+      // setLoading(false);
+    },
+  });
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -15,23 +35,32 @@ const CreateSurvey = () => {
     const deadline = startDate;
     const category = form.category.value;
     const currentTime = new Date();
+    const status = ' publish'
+    let options = {
+      yes: 0,
+      no: 0,
+    };
+    const surveyor = {
+      email: user?.email,
+    };
 
-    const surveyData ={
+    try {
+      const surveyData = {
         title,
         description,
         deadline,
         category,
         currentTime,
-        Surveyor: {
-            email: user?.email,
-        },
-        option: {
-            yes: 0,
-            no: 0,
-        }
+        status,
+        options,
+        surveyor,
+      };
+      console.log(surveyData);
+      // post request to server
+      await mutateAsync(surveyData);
+    } catch (err) {
+      console.log(err);
     }
-    console.log(surveyData)
-
   };
 
   return (

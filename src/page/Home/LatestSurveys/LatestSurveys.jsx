@@ -1,11 +1,15 @@
-import React from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useSurvey from "../../../hooks/useSurvey";
 import SurveyCard from "../../../components/Shared/SurveyCard/SurveyCard";
 
 const LatestSurveys = () => {
   const [data] = useSurvey();
-  const sortedData = data.sort((a, b) => new Date(b.survey_creation_time) - new Date(a.survey_creation_time));
+  // Convert date strings to Date objects and sort the data by currentTime in descending order
+  const sortedData = data
+    .map((item) => ({ ...item, currentTime: new Date(item.currentTime) }))
+    .sort((a, b) => b.currentTime - a.currentTime);
+
+  // Slice the first 6 items
   const surveys = sortedData.slice(0, 6);
   return (
     <div>
