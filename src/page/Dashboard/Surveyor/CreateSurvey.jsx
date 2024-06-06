@@ -22,8 +22,8 @@ const CreateSurvey = () => {
     onSuccess: () => {
       console.log("Data Saved Successfully");
       toast.success("Survey Added Successfully!");
-      // navigate("/dashboard/my-listings");
-      // setLoading(false);
+      navigate("/dashboard/my-listings");
+      setLoading(false);
     },
   });
 

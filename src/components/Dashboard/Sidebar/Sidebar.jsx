@@ -97,7 +97,7 @@ const Sidebar = () => {
               >
                 <BsFillHouseAddFill className='w-5 h-5' />
 
-                <span className='mx-4 font-medium'>Add Room</span>
+                <span className='mx-4 font-medium'>Create Survey</span>
               </NavLink>
               {/* My Listing */}
               <NavLink

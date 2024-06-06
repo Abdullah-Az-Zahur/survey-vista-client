@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SurveyCard = ({ survey }) => {
-  const { title, description, options } = survey;
+  const { title, category, options } = survey;
   console.log(survey);
   return (
     <div>
@@ -10,7 +10,7 @@ const SurveyCard = ({ survey }) => {
         <figure></figure>
         <div className="card-body">
           <h2 className="card-title">{title}</h2>
-          <p>{description}</p>
+          <p>{category}</p>
           <div className="card-actions justify-end">
             <p>Yes : {options.yes}</p>
             <p>no : {options.no}</p>
