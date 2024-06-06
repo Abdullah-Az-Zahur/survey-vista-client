@@ -7,6 +7,10 @@ import Home from "../page/Home/Home/Home";
 import SurveyDetails from "../page/Shared/SurveyDetails/SurveyDetails";
 import AllSurvey from "../page/AllSurvey/AllSurvey";
 import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../layouts/Dashboard";
+import Common from "../page/Dashboard/Common/Common";
+import CreateSurvey from "../page/Dashboard/Surveyor/CreateSurvey";
+import MyListings from "../page/Dashboard/Surveyor/MyListings";
 
 export const router = createBrowserRouter([
   {
@@ -39,5 +43,37 @@ export const router = createBrowserRouter([
   {
     path: "/signUp",
     element: <SignUp></SignUp>,
+  },
+
+  // Dashboard Routes
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        index: true,
+        element: (
+          <PrivateRoute>
+            <Common></Common>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'create-survey',
+        element: (
+          <PrivateRoute>
+            <CreateSurvey></CreateSurvey>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'my-listings',
+        element: (
+          <PrivateRoute>
+            <MyListings></MyListings>
+          </PrivateRoute>
+        ),
+      },
+    ],
   },
 ]);
