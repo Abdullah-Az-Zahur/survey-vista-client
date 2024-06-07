@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import SurveyDataRow from "../../../components/TableRows/SurveyDataRow";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyListings = () => {
   const { user } = useAuth();
@@ -90,7 +91,9 @@ const MyListings = () => {
                   </button>
                 </th>
                 <th>
-                  <button  className="btn btn-ghost btn-xs">Update</button>
+                  <Link to={`/dashboard/update-survey/${survey._id}`}>
+                    <button className="btn btn-ghost btn-xs">Update</button>
+                  </Link>
                 </th>
               </tr>
             ))}

@@ -52,14 +52,15 @@ const Navbar = () => {
         <div>
           <div className="flex flex-row  items-center justify-between gap-3 md:gap-0">
             {/* Logo */}
-            <Link to="/">
-              <img
+            <Link to="/" className="btn-ghost mx-4">
+              {/* <img
                 // className='hidden md:block'
                 src="https://i.ibb.co/4ZXzmq5/logo.png"
                 alt="logo"
                 width="100"
                 height="100"
-              />
+              /> */}
+              <h2 className="font-bold text-2xl ">Survey Vista</h2>
             </Link>
             {/* Dropdown Menu */}
             <div className="relative">

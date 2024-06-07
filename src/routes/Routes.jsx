@@ -82,6 +82,7 @@ export const router = createBrowserRouter([
             <UpdateSurvey></UpdateSurvey>
           </PrivateRoute>
         ),
+        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/survey/${params.id}`)
       },
     ],
   },
