@@ -48,7 +48,7 @@ const UpdateSurvey = () => {
         Swal.fire({
             position: "top-end",
             icon: "success",
-            title: `${e?.title} is updated to the menu.`,
+            title: `${title} is updated to the menu.`,
             showConfirmButton: false,
             timer: 1500
           });

@@ -12,6 +12,7 @@ import Common from "../page/Dashboard/Common/Common";
 import CreateSurvey from "../page/Dashboard/Surveyor/CreateSurvey";
 import MyListings from "../page/Dashboard/Surveyor/MyListings";
 import UpdateSurvey from "../page/Dashboard/Surveyor/UpdateSurvey";
+import Profile from "../page/Dashboard/Common/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -83,6 +84,14 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/survey/${params.id}`)
+      },
+      {
+        path: 'profile',
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
       },
     ],
   },
