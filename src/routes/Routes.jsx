@@ -13,6 +13,7 @@ import CreateSurvey from "../page/Dashboard/Surveyor/CreateSurvey";
 import MyListings from "../page/Dashboard/Surveyor/MyListings";
 import UpdateSurvey from "../page/Dashboard/Surveyor/UpdateSurvey";
 import Profile from "../page/Dashboard/Common/Profile";
+import ManageUsers from "../page/Dashboard/Admin/ManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -60,16 +61,29 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
+      // Admin Routes
       {
-        path: 'create-survey',
+        path: "manage-users",
+        element: (
+          <PrivateRoute>
+            <ManageUsers></ManageUsers>
+          </PrivateRoute>
+        ),
+      },
+
+      // Surveyor Routes
+      {
+        path: "create-survey",
         element: (
           <PrivateRoute>
             <CreateSurvey></CreateSurvey>
           </PrivateRoute>
         ),
       },
+
       {
-        path: 'my-listings',
+        path: "my-listings",
         element: (
           <PrivateRoute>
             <MyListings></MyListings>
@@ -77,16 +91,19 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'update-survey/:id',
+        path: "update-survey/:id",
         element: (
           <PrivateRoute>
             <UpdateSurvey></UpdateSurvey>
           </PrivateRoute>
         ),
-        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/survey/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/survey/${params.id}`),
       },
+
+      // common routes
       {
-        path: 'profile',
+        path: "profile",
         element: (
           <PrivateRoute>
             <Profile></Profile>

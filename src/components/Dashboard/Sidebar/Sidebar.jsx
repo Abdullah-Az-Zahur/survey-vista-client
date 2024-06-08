@@ -11,6 +11,9 @@ import { MdHomeWork } from "react-icons/md";
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
 import MenuItem from "./Menu/MenuItem";
+import SurveyorMenu from "./Menu/SurveyorMenu";
+import AdminMenu from "./Menu/AdminMenu";
+import UserMenu from "./Menu/UserMenu";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -77,19 +80,9 @@ const Sidebar = () => {
 
             {/*  Menu Items */}
             <nav>
-              {/* Create Survey */}
-              <MenuItem
-                label="Create Survey"
-                address="create-survey"
-                icon={BsFillHouseAddFill}
-              ></MenuItem>
-
-              {/* My Listing */}
-              <MenuItem
-                label="My List"
-                address="my-listings"
-                icon={MdHomeWork}
-              ></MenuItem>
+              {role === "admin" && <AdminMenu></AdminMenu>}
+              {role === "surveyor" && <SurveyorMenu></SurveyorMenu>}
+              {role === "user" && <UserMenu></UserMenu>}
             </nav>
           </div>
         </div>
@@ -99,11 +92,11 @@ const Sidebar = () => {
 
           {/* Profile Menu */}
           <MenuItem
-                label="Profile"
-                address="profile"
-                icon={FcSettings}
-              ></MenuItem>
-          
+            label="Profile"
+            address="profile"
+            icon={FcSettings}
+          ></MenuItem>
+
           <button
             onClick={logOut}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
