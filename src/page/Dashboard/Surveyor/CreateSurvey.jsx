@@ -35,11 +35,10 @@ const CreateSurvey = () => {
     const deadline = startDate;
     const category = form.category.value;
     const currentTime = new Date();
-    const status = ' publish'
-    let options = {
-      yes: 0,
-      no: 0,
-    };
+    const status = "publish";
+    const yes = 0;
+    const no = 0;
+
     const surveyor = {
       email: user?.email,
     };
@@ -52,7 +51,8 @@ const CreateSurvey = () => {
         category,
         currentTime,
         status,
-        options,
+        yes,
+        no,
         surveyor,
       };
       console.log(surveyData);

@@ -18,11 +18,9 @@ const UpdateSurvey = () => {
     const deadline = startDate;
     const category = form.category.value;
     const currentTime = new Date();
-    const status = " publish";
-    let options = {
-      yes: 0,
-      no: 0,
-    };
+    const status = "publish";
+    const yes = 0;
+    const no = 0;
     const surveyor = {
       email: user?.email,
     };
@@ -35,24 +33,25 @@ const UpdateSurvey = () => {
         category,
         currentTime,
         status,
-        options,
+        yes,
+        no,
         surveyor,
       };
       console.log(surveyData);
       // patch request to server
       const surveyRes = await axiosSecure.patch(`/survey/${_id}`, surveyData);
-      console.log(surveyRes)
-      if(surveyRes.data.modifiedCount > 0){
+      console.log(surveyRes);
+      if (surveyRes.data.modifiedCount > 0) {
         // show success popup
         // reset();
         Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `${title} is updated to the menu.`,
-            showConfirmButton: false,
-            timer: 1500
-          });
-    }
+          position: "top-end",
+          icon: "success",
+          title: `${title} is updated to the menu.`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     } catch (err) {
       console.log(err);
     }

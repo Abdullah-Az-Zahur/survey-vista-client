@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SurveyCard = ({ survey }) => {
-  const { title, category, options } = survey;
-  console.log(survey);
+  const { title, category, yes, no } = survey;
   return (
     <div>
       <div className="card bg-base-100 shadow-xl">
@@ -12,8 +11,8 @@ const SurveyCard = ({ survey }) => {
           <h2 className="card-title">{title}</h2>
           <p>{category}</p>
           <div className="card-actions justify-end">
-            <p>Yes : {options.yes}</p>
-            <p>no : {options.no}</p>
+            <p>Yes : {yes}</p>
+            <p>no : {no}</p>
             <Link to={`/survey/${survey?._id}`} className="btn btn-primary">
               Details
             </Link>

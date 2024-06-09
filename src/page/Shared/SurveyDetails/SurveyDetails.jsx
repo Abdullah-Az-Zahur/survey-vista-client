@@ -1,15 +1,51 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import useAuth from "../../../hooks/useAuth";
+import { data } from "autoprefixer";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const SurveyDetails = () => {
   const { id } = useParams();
   const axiosCommon = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [selectedValue, setSelectedValue] = useState("");
+  const { email } = user;
+  const [loading, setLoading] = useState(false);
+
+  const [matchData, setMatchData] = useState([]);
+  const [result, setResult] = useState([]);
+
+  const { mutateAsync } = useMutation({
+    mutationFn: async (surveyData) => {
+      const { data } = await axiosSecure.put(`/survey-result`, surveyData);
+      return data;
+    },
+    onSuccess: () => {
+      console.log("Data Saved Successfully");
+      // toast.success("Survey Added Successfully!");
+      // Navigate("/dashboard/my-listings");
+      refetch();
+      setLoading(false);
+    },
+  });
+  const { mutateAsync: mutateAsync2 } = useMutation({
+    mutationFn: async (surveyData) => {
+      const { data } = await axiosSecure.patch(`/surveyVote/${id}`, surveyData);
+      return data;
+    },
+    onSuccess: () => {
+      console.log("Data Saved Successfully");
+      toast.success("Thank You!");
+      Navigate("/");
+      refetch();
+      setLoading(false);
+    },
+  });
 
   const {
     data: survey = {},
@@ -23,10 +59,40 @@ const SurveyDetails = () => {
     },
   });
 
+  const { data: DBuser = {} } = useQuery({
+    queryKey: ["user", email],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/user/${email}`);
+      return data;
+    },
+  });
+
+  const { data: surveyResult = [] } = useQuery({
+    queryKey: ["survey-result", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/survey-result/${user?.email}`);
+      return res.data;
+    },
+  });
+
+  useEffect(() => {
+    // Simulate data fetch
+    setMatchData(surveyResult);
+    checkForMatch(surveyResult);
+  }, [surveyResult]);
+
+  const checkForMatch = (matchData) => {
+    const matchingData = matchData.find((item) => item.surveyId == id);
+    if (matchingData) {
+      setResult([matchingData]);
+    } else {
+      setResult([]);
+    }
+  };
+
+
+
   if (isLoading) return <LoadingSpinner />;
-  console.log(survey);
-  console.log(id);
-  console.log(user.email);
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -34,7 +100,24 @@ const SurveyDetails = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(selectedValue);
+    const form = event.target;
+    const comment = form.comment?.value;
+    try {
+      const surveyData = {
+        surveyId: id,
+        userEmail: user.email,
+        comment,
+        selectedValue,
+      };
+      console.log(surveyData);
+      console.log(selectedValue);
+      // post request to server
+      await mutateAsync(surveyData);
+      await mutateAsync2(surveyData);
+      refetch();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -79,9 +162,31 @@ const SurveyDetails = () => {
                 </h2>
               </div>
             </div>
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
+
+            {/* comment */}
+            {DBuser?.pro === "yes" && (
+              <input
+                name="comment"
+                type="text"
+                placeholder="Type your comment here"
+                className="input input-bordered input-lg w-full max-w-xs mb-5"
+              />
+            )}
+
+
+
+            {result[0]?.userEmail != email &&
+            result[0]?.surveyId.surveyId != id ? (
+              <button type="submit"  className="btn btn-primary">
+                Submit
+              </button>
+            ) : (
+              <button disabled type="submit" className="btn btn-primary">
+                Already voted
+              </button>
+            )}
+
+           
           </div>
         </div>
       </form>
