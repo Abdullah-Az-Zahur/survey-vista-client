@@ -14,6 +14,9 @@ import MyListings from "../page/Dashboard/Surveyor/MyListings";
 import UpdateSurvey from "../page/Dashboard/Surveyor/UpdateSurvey";
 import Profile from "../page/Dashboard/Common/Profile";
 import ManageUsers from "../page/Dashboard/Admin/ManageUsers";
+import AdminRoute from "./AdminRoute";
+import SurveyorRoute from "./SurveyorRoute";
+import SurveyHistory from "../page/Dashboard/Common/SurveyHistory";
 
 export const router = createBrowserRouter([
   {
@@ -71,7 +74,9 @@ export const router = createBrowserRouter([
         path: "manage-users",
         element: (
           <PrivateRoute>
-            <ManageUsers></ManageUsers>
+            <AdminRoute>
+              <ManageUsers></ManageUsers>
+            </AdminRoute>
           </PrivateRoute>
         ),
       },
@@ -81,7 +86,9 @@ export const router = createBrowserRouter([
         path: "create-survey",
         element: (
           <PrivateRoute>
-            <CreateSurvey></CreateSurvey>
+            <SurveyorRoute>
+              <CreateSurvey></CreateSurvey>
+            </SurveyorRoute>
           </PrivateRoute>
         ),
       },
@@ -90,7 +97,9 @@ export const router = createBrowserRouter([
         path: "my-listings",
         element: (
           <PrivateRoute>
-            <MyListings></MyListings>
+            <SurveyorRoute>
+              <MyListings></MyListings>
+            </SurveyorRoute>
           </PrivateRoute>
         ),
       },
@@ -98,12 +107,17 @@ export const router = createBrowserRouter([
         path: "update-survey/:id",
         element: (
           <PrivateRoute>
-            <UpdateSurvey></UpdateSurvey>
+            <SurveyorRoute>
+              <UpdateSurvey></UpdateSurvey>
+            </SurveyorRoute>
           </PrivateRoute>
         ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/survey/${params.id}`),
       },
+
+      // user route
+      {},
 
       // common routes
       {
@@ -111,6 +125,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Profile></Profile>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "survey-history",
+        element: (
+          <PrivateRoute>
+            <SurveyHistory></SurveyHistory>
           </PrivateRoute>
         ),
       },

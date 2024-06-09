@@ -1,6 +1,7 @@
 import React from "react";
 import { FaUserCog } from "react-icons/fa";
 import MenuItem from "./MenuItem";
+import { BsFingerprint } from "react-icons/bs";
 
 const AdminMenu = () => {
   return (
@@ -26,6 +27,7 @@ const AdminMenu = () => {
           address="manage-users"
         />
       </div>
+      <MenuItem icon={BsFingerprint} label="Survey History" address="survey-history" />
       
     </div>
   );

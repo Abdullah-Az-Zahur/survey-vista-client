@@ -66,6 +66,7 @@ const MyListings = () => {
           {/* head */}
           <thead>
             <tr>
+              <th>#</th>
               <th>Title</th>
               <th>Category</th>
               <th>Details</th>
@@ -75,12 +76,15 @@ const MyListings = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {surveys.map((survey) => (
+            {surveys.map((survey, index) => (
               <tr key={survey._id}>
+                <td>{index + 1}</td>
                 <td>{survey?.title}</td>
                 <td>{survey?.category}</td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
+                  <Link to={`/survey/${survey._id}`}>
+                    <button className="btn btn-ghost btn-xs">details</button>
+                  </Link>
                 </th>
                 <th>
                   <button
@@ -97,14 +101,6 @@ const MyListings = () => {
                 </th>
               </tr>
             ))}
-
-            {/* {surveys.map((survey) => (
-              <SurveyDataRow
-                key={survey._id}
-                survey={survey}
-                refetch={refetch}
-              ></SurveyDataRow>
-            ))} */}
           </tbody>
         </table>
       </div>

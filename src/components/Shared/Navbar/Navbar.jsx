@@ -24,7 +24,7 @@ const Navbar = () => {
     setIsModalOpen(false);
   };
   const modalHandler = async () => {
-    console.log("I want to be a host");
+    console.log("I want to be a surveyor");
     try {
       const currentUser = {
         email: user?.email,
@@ -65,13 +65,14 @@ const Navbar = () => {
             {/* Dropdown Menu */}
             <div className="relative">
               <div className="flex flex-row items-center gap-3">
+                <Link to="/allSurveys">All Surveys</Link>
                 {/* Become A Host btn */}
-                <div className="hidden md:block">
+                <div className='hidden md:block'>
                   {/* {!user && ( */}
                   <button
                     // disabled={!user}
                     onClick={() => setIsModalOpen(true)}
-                    className="disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition"
+                    className='disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition'
                   >
                     Become Surveyor
                   </button>

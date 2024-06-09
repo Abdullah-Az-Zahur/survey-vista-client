@@ -58,6 +58,7 @@ const SurveyDetails = () => {
       return data;
     },
   });
+  console.log(survey)
 
   const { data: DBuser = {} } = useQuery({
     queryKey: ["user", email],
@@ -105,6 +106,8 @@ const SurveyDetails = () => {
     try {
       const surveyData = {
         surveyId: id,
+        title:survey?.title,
+        category:survey?.category,
         userEmail: user.email,
         comment,
         selectedValue,
@@ -174,7 +177,7 @@ const SurveyDetails = () => {
             )}
 
 
-
+            {/* conditional submit button depend on user voted or not */}
             {result[0]?.userEmail != email &&
             result[0]?.surveyId.surveyId != id ? (
               <button type="submit"  className="btn btn-primary">
