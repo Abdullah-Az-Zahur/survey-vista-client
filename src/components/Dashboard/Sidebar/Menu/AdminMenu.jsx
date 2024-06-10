@@ -17,17 +17,17 @@ const AdminMenu = () => {
         <MenuItem
           icon={FaUserCog}
           label="Surveys Status"
-          address="manage-users"
+          address="surveys-status"
         />
       </div>
       <div>
         <MenuItem
           icon={FaUserCog}
           label="Payments"
-          address="manage-users"
+          address="all-payments"
         />
       </div>
-      <MenuItem icon={BsFingerprint} label="Survey History" address="survey-history" />
+      <MenuItem icon={BsFingerprint} label="Responses" address="survey-history" />
       
     </div>
   );

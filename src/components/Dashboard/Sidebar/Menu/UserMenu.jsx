@@ -43,7 +43,7 @@ const UserMenu = () => {
     <div>
       <MenuItem
         icon={BsFingerprint}
-        label="Survey History"
+        label="Responses"
         address="survey-history"
       />
 

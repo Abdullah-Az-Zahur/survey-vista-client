@@ -18,6 +18,8 @@ import AdminRoute from "./AdminRoute";
 import SurveyorRoute from "./SurveyorRoute";
 import SurveyHistory from "../page/Dashboard/Common/SurveyHistory";
 import Payment from "../page/Dashboard/Payment/Payment";
+import SurveysStatus from "../page/Dashboard/Admin/SurveysStatus";
+import AllPayments from "../page/Dashboard/Admin/AllPayments";
 
 export const router = createBrowserRouter([
   {
@@ -77,6 +79,26 @@ export const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <ManageUsers></ManageUsers>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "surveys-status",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <SurveysStatus></SurveysStatus>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "all-payments",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllPayments></AllPayments>
             </AdminRoute>
           </PrivateRoute>
         ),

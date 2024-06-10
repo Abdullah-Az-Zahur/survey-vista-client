@@ -129,7 +129,9 @@ const SurveyDetails = () => {
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className="text-2xl font-bold">{survey?.title}</h1>
-            <p className="py-6">{survey?.description}</p>
+            <p className="py-6">Dead Line : {survey?.deadline}</p>
+            <p className="py-6">Category : {survey?.category}</p>
+            <p className="py-6">Description : {survey?.description}</p>
 
             {/* radio button */}
             <div>
