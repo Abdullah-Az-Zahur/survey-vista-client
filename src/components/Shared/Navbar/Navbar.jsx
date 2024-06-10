@@ -65,7 +65,7 @@ const Navbar = () => {
             {/* Dropdown Menu */}
             <div className="relative">
               <div className="flex flex-row items-center gap-3">
-                <Link to="/allSurveys">All Surveys</Link>
+                <Link to="/allSurveys" className="font-semibold text-sm ">All Surveys</Link>
                 {/* Become A Host btn */}
                 <div className='hidden md:block'>
                   {/* {!user && ( */}

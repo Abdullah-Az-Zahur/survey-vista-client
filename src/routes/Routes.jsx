@@ -17,6 +17,7 @@ import ManageUsers from "../page/Dashboard/Admin/ManageUsers";
 import AdminRoute from "./AdminRoute";
 import SurveyorRoute from "./SurveyorRoute";
 import SurveyHistory from "../page/Dashboard/Common/SurveyHistory";
+import Payment from "../page/Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -133,6 +134,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <SurveyHistory></SurveyHistory>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payment",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
           </PrivateRoute>
         ),
       },

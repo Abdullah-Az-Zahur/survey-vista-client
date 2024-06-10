@@ -60,6 +60,11 @@ const SurveyorMenu = () => {
         label="Survey History"
         address="survey-history"
       />
+      <MenuItem
+        icon={BsFingerprint}
+        label="Become A Pro User"
+        address="payment"
+      />
 
       {role === "surveyor" && (
         <div
