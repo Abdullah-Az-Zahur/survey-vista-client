@@ -60,7 +60,7 @@ Welcome to Survey Vista, a feature-rich survey application built using the MERN 
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Authentication**: JWT, Social Media Auth
-- **Payment Integration**: [Specify Payment Gateway]
+- **Payment Integration**: Stripe
 
 ## Live Site
 Check out the live site: [Survey Vista](https://survey-vista.web.app/)
