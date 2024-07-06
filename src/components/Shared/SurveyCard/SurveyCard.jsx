@@ -14,7 +14,7 @@ const SurveyCard = ({ survey }) => {
             <p>Yes : {yes}</p>
             <p>no : {no}</p>
             <Link to={`/survey/${survey?._id}`} className="btn btn-primary">
-              Details
+              Start
             </Link>
           </div>
         </div>

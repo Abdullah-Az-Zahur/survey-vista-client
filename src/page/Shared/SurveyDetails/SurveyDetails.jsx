@@ -20,6 +20,7 @@ const SurveyDetails = () => {
   const [matchData, setMatchData] = useState([]);
   const [result, setResult] = useState([]);
 
+
   const { mutateAsync } = useMutation({
     mutationFn: async (surveyData) => {
       const { data } = await axiosSecure.put(`/survey-result`, surveyData);
@@ -41,7 +42,7 @@ const SurveyDetails = () => {
     onSuccess: () => {
       console.log("Data Saved Successfully");
       toast.success("Thank You!");
-      Navigate("/");
+      Navigate("/dashboard/my-listings");
       refetch();
       setLoading(false);
     },
@@ -125,13 +126,13 @@ const SurveyDetails = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="hero min-h-screen bg-base-200">
-        <div className="hero-content text-center">
+      <form onSubmit={handleSubmit} className="hero min-h-screen my-auto">
+        <div className="hero-content text-start">
           <div className="max-w-md">
-            <h1 className="text-2xl font-bold">{survey?.title}</h1>
-            <p className="py-6">Dead Line : {survey?.deadline}</p>
-            <p className="py-6">Category : {survey?.category}</p>
-            <p className="py-6">Description : {survey?.description}</p>
+            <h1 className="text-2xl font-bold my-4">{survey?.title}</h1>
+            <p className=""><span className="font-bold">Dead Line : </span>{survey?.deadline.slice(0,10)}</p>
+            <p className=""><span className="font-bold">Category : </span>{survey?.category}</p>
+            <p className=""><span className="font-bold">Description : </span>{survey?.description}</p>
 
             {/* radio button */}
             <div>

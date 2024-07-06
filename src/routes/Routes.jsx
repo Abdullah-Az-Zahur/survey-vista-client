@@ -20,6 +20,7 @@ import SurveyHistory from "../page/Dashboard/Common/SurveyHistory";
 import Payment from "../page/Dashboard/Payment/Payment";
 import SurveysStatus from "../page/Dashboard/Admin/SurveysStatus";
 import AllPayments from "../page/Dashboard/Admin/AllPayments";
+import AllSurveyHistory from "../page/Dashboard/Admin/AllSurveyHistory";
 
 export const router = createBrowserRouter([
   {
@@ -99,6 +100,16 @@ export const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <AllPayments></AllPayments>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "all-survey-history",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllSurveyHistory></AllSurveyHistory>
             </AdminRoute>
           </PrivateRoute>
         ),

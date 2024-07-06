@@ -27,7 +27,7 @@ const AdminMenu = () => {
           address="all-payments"
         />
       </div>
-      <MenuItem icon={BsFingerprint} label="Responses" address="survey-history" />
+      <MenuItem icon={BsFingerprint} label="Responses" address="all-survey-history" />
       
     </div>
   );

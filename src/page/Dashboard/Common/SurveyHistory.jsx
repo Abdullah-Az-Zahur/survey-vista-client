@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -19,6 +19,7 @@ const SurveyHistory = () => {
     },
   });
 
+  
   return (
     <div>
       <Helmet>
@@ -33,6 +34,7 @@ const SurveyHistory = () => {
               <th>#</th>
               <th>Title</th>
               <th>Category</th>
+              <th>Comment</th>
               <th>Opinion</th>
             </tr>
           </thead>
@@ -43,6 +45,7 @@ const SurveyHistory = () => {
                 <td>{index + 1 }</td>
                 <td>{survey?.title}</td>
                 <td>{survey?.category}</td>
+                <td>{survey?.comment}</td>
                 <td>{survey?.selectedValue}</td>
               </tr>
             ))}

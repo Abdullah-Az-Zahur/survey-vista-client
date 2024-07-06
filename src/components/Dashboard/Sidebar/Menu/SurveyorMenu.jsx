@@ -57,7 +57,7 @@ const SurveyorMenu = () => {
 
       <MenuItem
         icon={BsFingerprint}
-        label="Survey History"
+        label="Responses"
         address="survey-history"
       />
       <MenuItem
