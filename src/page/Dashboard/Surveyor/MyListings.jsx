@@ -18,7 +18,7 @@ const MyListings = () => {
   } = useQuery({
     queryKey: ["my-listings", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/my-listings/${user?.email}`);
+      const res = await axiosSecure.get(`/survey/${user?.email}`);
       return res.data;
     },
   });

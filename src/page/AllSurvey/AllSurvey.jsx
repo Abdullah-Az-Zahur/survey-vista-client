@@ -4,7 +4,7 @@ import axios from "axios";
 import SurveyCard from "../../components/Shared/SurveyCard/SurveyCard";
 
 const AllSurvey = () => {
-  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState(0);
   const [filter, setFilter] = useState("");
@@ -18,7 +18,7 @@ const AllSurvey = () => {
       const { data } = await axios(
         `${
           import.meta.env.VITE_API_URL
-        }/all-survey?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}`
+        }/survey/all-survey?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}`
       );
       setSurveys(data);
     };
@@ -31,7 +31,7 @@ const AllSurvey = () => {
       const { data } = await axios(
         `${
           import.meta.env.VITE_API_URL
-        }/survey-count?filter=${filter}&search=${search}`
+        }/survey/count?filter=${filter}&search=${search}`
       );
 
       setCount(data.count);

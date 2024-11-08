@@ -16,7 +16,7 @@ const CreateSurvey = () => {
 
   const { mutateAsync } = useMutation({
     mutationFn: async (surveyData) => {
-      const { data } = await axiosSecure.post(`/create`, surveyData);
+      const { data } = await axiosSecure.post(`/survey`, surveyData);
       return data;
     },
     onSuccess: () => {

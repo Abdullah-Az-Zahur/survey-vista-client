@@ -59,7 +59,7 @@ const AuthProvider = ({ children }) => {
   // Get token from server
   const getToken = async (email) => {
     const { data } = await axios.post(
-      `${import.meta.env.VITE_API_URL}/jwt`,
+      `${import.meta.env.VITE_API_URL}/auth/jwt`,
       { email },
       { withCredentials: true }
     );
