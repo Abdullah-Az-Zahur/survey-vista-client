@@ -16,7 +16,7 @@ const UserDataRow = ({ user, refetch }) => {
   const { mutateAsync } = useMutation({
     mutationFn: async role => {
       const { data } = await axiosSecure.patch(
-        `/users/update/${user?.email}`,
+        `/user/update/${user?.email}`,
         role
       )
       return data
