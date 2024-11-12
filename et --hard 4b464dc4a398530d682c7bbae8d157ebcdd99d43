@@ -1,0 +1,35 @@
+[33m5a686f9[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m WIP: Save changes before checking out a specific commit
+[33md20c367[m[33m ([m[1;31morigin/main[m[33m)[m update : all survey result url
+[33m13e942d[m update : survey result url
+[33mc338152[m  fix : role update url
+[33m2c43a2f[m update : all survey request url for backend mvc pattern
+[33m4b464dc[m[33m ([m[1;32mdevelopment[m[33m)[m  add: footer
+[33mf4b2956[m add: footer , fix:date
+[33m30175bf[m Update README.md
+[33m5c61383[m Update README.md
+[33mae7df9e[m update some section
+[33m524a247[m save the payment in the database
+[33mee1ce6b[m add filter option on all job page
+[33m081de05[m conditional submit button depend on user voted or not
+[33m0869f57[m manage user role
+[33m44ce6da[m show indivedual dashboard meny depends on user role
+[33mce37a56[m create profile route
+[33ma9becb6[m update survey
+[33m6ca4e16[m delete data
+[33m28dc9f5[m  show my survey list
+[33m7144e63[m add table to my list page
+[33mfffe40c[m update sort function based on date
+[33m91dfe4a[m create add survey page
+[33mc80de53[m create dashboard
+[33me5a7dab[m get value from  survey details page
+[33m72d79ec[m update login page
+[33m9c0d6a5[m update navbar
+[33mdea541e[m  sort data as vote count
+[33m89a0f05[m load single survey data
+[33m6793a36[m load feature survey data from database
+[33m727a5cd[m add banner
+[33m7699d72[m create private routes
+[33m174e615[m create sign up page
+[33mc452cd9[m create login
+[33m612b716[m creat auth provider
+[33m4ae6c6d[m first commit
