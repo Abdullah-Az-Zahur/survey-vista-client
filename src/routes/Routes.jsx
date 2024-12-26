@@ -44,6 +44,14 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "payment",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
@@ -170,14 +178,14 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "payment",
-        element: (
-          <PrivateRoute>
-            <Payment></Payment>
-          </PrivateRoute>
-        ),
-      },
+      // {
+      //   path: "payment",
+      //   element: (
+      //     <PrivateRoute>
+      //       <Payment></Payment>
+      //     </PrivateRoute>
+      //   ),
+      // },
     ],
   },
 ]);
