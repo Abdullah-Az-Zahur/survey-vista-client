@@ -8,8 +8,20 @@ import {
 } from "@headlessui/react";
 import { Fragment } from "react";
 import { IoClose } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
-const HostModal = ({ closeModal, isOpen, modalHandler }) => {
+const HostModal = ({
+  closeModal,
+  isOpen,
+  modalHandlerSurveyor,
+  modalHandlerProUser,
+}) => {
+  const navigate = useNavigate();
+
+  const handleNavigation = (type) => {
+    navigate(`/payment`, { state: { type } });
+  };
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -61,12 +73,12 @@ const HostModal = ({ closeModal, isOpen, modalHandler }) => {
                     <div className="flex mt-2 justify-around">
                       <button
                         type="button"
-                        onClick={modalHandler}
+                        // onClick={modalHandlerProUser}
+                        onClick={() => handleNavigation("pro")}
                         className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
                       >
                         Continue
                       </button>
-                      
                     </div>
                   </div>
 
@@ -85,12 +97,12 @@ const HostModal = ({ closeModal, isOpen, modalHandler }) => {
                     <div className="flex mt-2 justify-around">
                       <button
                         type="button"
-                        onClick={modalHandler}
+                        // onClick={modalHandlerSurveyor}
+                        onClick={() => handleNavigation("surveyor")}
                         className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
                       >
                         Continue
                       </button>
-                      
                     </div>
                   </div>
                 </div>

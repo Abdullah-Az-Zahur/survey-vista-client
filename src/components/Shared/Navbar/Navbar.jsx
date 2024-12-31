@@ -23,10 +23,9 @@ const Navbar = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  const modalHandler = async () => {
+  const modalHandlerSurveyor = async () => {
     console.log("I want to be a surveyor");
 
-    
     try {
       const currentUser = {
         email: user?.email,
@@ -46,7 +45,29 @@ const Navbar = () => {
     } finally {
       closeModal();
     }
+  };
+  const modalHandlerProUser = async () => {
+    console.log("I want to be a Pro User");
 
+    try {
+      const currentUser = {
+        email: user?.email,
+        role: "user",
+        status: "Requested",
+      };
+      const { data } = await axiosSecure.put(`/user`, currentUser);
+      console.log(data);
+      if (data.modifiedCount > 0) {
+        toast.success("Success! Please wait for admin confirmation");
+      } else {
+        toast.success("Please!, Wait for admin approval👊");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    } finally {
+      closeModal();
+    }
   };
 
   return (
@@ -87,7 +108,8 @@ const Navbar = () => {
                 <HostModal
                   isOpen={isModalOpen}
                   closeModal={closeModal}
-                  modalHandler={modalHandler}
+                  modalHandlerSurveyor={modalHandlerSurveyor}
+                  modalHandlerProUser={modalHandlerProUser}
                 />
                 {/* Dropdown btn */}
                 <div
