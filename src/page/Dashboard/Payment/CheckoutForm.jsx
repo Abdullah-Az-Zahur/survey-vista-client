@@ -1,11 +1,11 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ type }) => {
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
@@ -75,28 +75,52 @@ const CheckoutForm = () => {
         setTransactionId(paymentIntent.id);
 
         // now save the payment in the database
-        const payment = {
-          email: user.email,
-          price: totalPrice,
-          pro: "yes",
-          transactionId: paymentIntent.id,
-          date: new Date(), // utc date convert. use moment js to
-        };
 
-        const res = await axiosSecure.post("/payments", payment);
-        console.log("payment saved", res.data);
-        // refetch();
-        if (res.data?.paymentResult?.insertedId) {
-          const res = await axiosSecure.patch(`/users/${user?.email}`, payment);
-          console.log(res)
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "You are PRO now",
-            showConfirmButton: false,
-            timer: 1500,
+        if (type === "pro") {
+          // Save the payment and update the user's role to PRO
+          const payment = {
+            email: user.email,
+            price: totalPrice,
+            pro: "yes",
+            transactionId: paymentIntent.id,
+            date: new Date(),
+          };
+
+          const res = await axiosSecure.post("/payments", payment);
+          console.log("payment saved", res.data);
+          // refetch();
+          if (res.data?.paymentResult?.insertedId) {
+            const res = await axiosSecure.patch(
+              `/users/${user?.email}`,
+              payment
+            );
+            console.log(res);
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "You are PRO now",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/dashboard");
+          }
+        } else if (type === "surveyor") {
+          // Update the user's role to Surveyor
+          const res = await axiosSecure.patch(`/users/update/${user?.email}`, {
+            role: "surveyor",
           });
-          navigate("/dashboard");
+          console.log("role updated", res.data);
+
+          if (res.data?.result?.modifiedCount > 0) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "You are now a Surveyor",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/dashboard");
+          }
         }
       }
     }

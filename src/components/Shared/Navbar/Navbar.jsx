@@ -23,8 +23,32 @@ const Navbar = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  const modalHandler = async () => {
+  const modalHandlerSurveyor = async () => {
     console.log("I want to be a surveyor");
+
+    try {
+      const currentUser = {
+        email: user?.email,
+        role: "user",
+        status: "Requested",
+      };
+      const { data } = await axiosSecure.put(`/user`, currentUser);
+      console.log(data);
+      if (data.modifiedCount > 0) {
+        toast.success("Success! Please wait for admin confirmation");
+      } else {
+        toast.success("Please!, Wait for admin approval👊");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    } finally {
+      closeModal();
+    }
+  };
+  const modalHandlerProUser = async () => {
+    console.log("I want to be a Pro User");
+
     try {
       const currentUser = {
         email: user?.email,
@@ -65,14 +89,16 @@ const Navbar = () => {
             {/* Dropdown Menu */}
             <div className="relative">
               <div className="flex flex-row items-center gap-3">
-                <Link to="/allSurveys" className="font-semibold text-sm ">All Surveys</Link>
+                <Link to="/allSurveys" className="font-semibold text-sm ">
+                  All Surveys
+                </Link>
                 {/* Become A Host btn */}
-                <div className='hidden md:block'>
+                <div className="hidden md:block">
                   {/* {!user && ( */}
                   <button
                     // disabled={!user}
                     onClick={() => setIsModalOpen(true)}
-                    className='disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition'
+                    className="disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition"
                   >
                     Become Surveyor
                   </button>
@@ -82,7 +108,8 @@ const Navbar = () => {
                 <HostModal
                   isOpen={isModalOpen}
                   closeModal={closeModal}
-                  modalHandler={modalHandler}
+                  modalHandlerSurveyor={modalHandlerSurveyor}
+                  modalHandlerProUser={modalHandlerProUser}
                 />
                 {/* Dropdown btn */}
                 <div

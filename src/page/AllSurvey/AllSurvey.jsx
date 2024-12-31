@@ -4,7 +4,7 @@ import axios from "axios";
 import SurveyCard from "../../components/Shared/SurveyCard/SurveyCard";
 
 const AllSurvey = () => {
-  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState(0);
   const [filter, setFilter] = useState("");
