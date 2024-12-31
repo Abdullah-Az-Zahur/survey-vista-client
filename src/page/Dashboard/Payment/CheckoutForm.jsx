@@ -111,7 +111,7 @@ const CheckoutForm = ({ type }) => {
           });
           console.log("role updated", res.data);
 
-          if (res.data?.modifiedCount > 0) {
+          if (res.data?.result?.modifiedCount > 0) {
             Swal.fire({
               position: "top-end",
               icon: "success",
