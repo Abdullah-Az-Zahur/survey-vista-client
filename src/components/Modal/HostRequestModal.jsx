@@ -19,6 +19,7 @@ const HostModal = ({
   const navigate = useNavigate();
 
   const handleNavigation = (type) => {
+    closeModal();
     navigate(`/payment`, { state: { type } });
   };
 

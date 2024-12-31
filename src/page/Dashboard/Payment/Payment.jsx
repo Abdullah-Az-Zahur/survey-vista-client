@@ -15,13 +15,26 @@ const Payment = () => {
         heading="Payment"
         subHeading="Please pay to become Pro user"
       ></SectionTitle>
-      <div>
-        <h1 className="text-xl font-bold">Payment Page</h1>
-        {type === "pro" && <p>You selected: Buy Premium</p>}
-        {type === "surveyor" && <p>You selected: Become Surveyor</p>}
+      <div className="">
+        <div>
+          <h2>Test Card Example</h2>
+          <div className="flex gap-5">
+            <h2>card Number :</h2>
+            <p>5555555555554444</p>
+          </div>
+
+          <div className="flex gap-5">
+            <h2>Date : </h2>
+            <p>12 / 35 612 14512</p>
+          </div>
+        </div>
+        <div className=" text-center py-5">
+          {type === "pro" && <p className="">Buy Premium</p>}
+          {type === "surveyor" && <p>Become Surveyor</p>}
+        </div>
 
         <Elements stripe={stripePromise}>
-          <CheckoutForm></CheckoutForm>
+          <CheckoutForm type={type}></CheckoutForm>
         </Elements>
       </div>
     </div>
