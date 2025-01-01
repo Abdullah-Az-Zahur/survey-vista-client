@@ -10,13 +10,13 @@ const Payment = () => {
   const location = useLocation();
   const { type } = location.state || {};
   return (
-    <div>
+    <div className="">
       <SectionTitle
         heading="Payment"
         subHeading="Please pay to become Pro user"
       ></SectionTitle>
-      <div className="">
-        <div>
+      <div className=" container mx-auto my-5">
+        <div className="md:pl-5 pl-2">
           <h2>Test Card Example</h2>
           <div className="flex gap-5">
             <h2>card Number :</h2>
@@ -29,8 +29,12 @@ const Payment = () => {
           </div>
         </div>
         <div className=" text-center py-5">
-          {type === "pro" && <p className="">Buy Premium</p>}
-          {type === "surveyor" && <p>Become Surveyor</p>}
+          {type === "pro" && (
+            <p className="md:text-3xl text-xl font-bold">Buy Premium</p>
+          )}
+          {type === "surveyor" && (
+            <p className="md:text-3xl text-xl font-bold">Become Surveyor</p>
+          )}
         </div>
 
         <Elements stripe={stripePromise}>

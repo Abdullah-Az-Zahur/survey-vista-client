@@ -84,12 +84,12 @@ const Navbar = () => {
                 width="100"
                 height="100"
               /> */}
-              <h2 className="font-bold text-2xl ">Survey Vista</h2>
+              <button className="font-bold text-2xl  ">Survey Vista</button>
             </Link>
             {/* Dropdown Menu */}
             <div className="relative">
               <div className="flex flex-row items-center gap-3">
-                <Link to="/allSurveys" className="font-semibold text-sm ">
+                <Link to="/allSurveys" className="disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition">
                   All Surveys
                 </Link>
                 {/* Become A Host btn */}

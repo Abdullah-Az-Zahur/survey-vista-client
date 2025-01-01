@@ -61,14 +61,14 @@ const HostModal = ({
                   as="h3"
                   className="text-lg font-medium text-center leading-6 text-gray-900"
                 >
-                  Become Premium Member
+                  Become 
                 </DialogTitle>
                 <div className="flex items-center justify-center">
                   {/* pro user */}
-                  <div>
+                  <div className="">
                     <div className="mt-2">
                       <h3 className="font-bold text-black">Pro User</h3>
-                      <p className="text-sm text-gray-500">User Comment Now</p>
+                      <p className="text-sm text-gray-500 pt-3">User can comment</p>
                     </div>
 
                     <div className="flex mt-2 justify-around">
@@ -89,8 +89,8 @@ const HostModal = ({
                   <div>
                     <div className="mt-2">
                       <h3 className="font-bold text-black">Surveyor</h3>
-                      <p className="text-sm text-gray-500">Can create survey</p>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-500 pt-3">Can create survey</p>
+                      <p className="text-sm text-gray-500 pt-1">
                         Surveyor Dashboard
                       </p>
                     </div>
