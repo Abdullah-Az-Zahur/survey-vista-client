@@ -1,6 +1,6 @@
 import { AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import avatarImg from "../../../assets/image/avater/user.png";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -11,11 +11,20 @@ const Navbar = () => {
   const axiosSecure = useAxiosSecure();
   const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
     logOut()
       .then(() => {})
       .catch((error) => console.log(error));
+  };
+
+  const handleBecomeSurveyor = () => {
+    if (!user) {
+      navigate("/login");
+    } else {
+      setIsModalOpen(true);
+    }
   };
 
   // for modal
@@ -89,20 +98,21 @@ const Navbar = () => {
             {/* Dropdown Menu */}
             <div className="relative">
               <div className="flex flex-row items-center gap-3">
-                <Link to="/allSurveys" className="disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition">
+                <Link
+                  to="/allSurveys"
+                  className="disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition"
+                >
                   All Surveys
                 </Link>
                 {/* Become A Host btn */}
                 <div className="hidden md:block">
                   {/* {!user && ( */}
                   <button
-                    // disabled={!user}
-                    onClick={() => setIsModalOpen(true)}
-                    className="disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition"
+                    onClick={handleBecomeSurveyor}
+                    className="disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full transition"
                   >
                     Become Surveyor
                   </button>
-                  {/* )} */}
                 </div>
                 {/* Modal */}
                 <HostModal
