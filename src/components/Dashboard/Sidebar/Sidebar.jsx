@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { GrLogout } from "react-icons/gr";
 import { FcSettings } from "react-icons/fc";
-import { BsFillHouseAddFill, BsFingerprint } from "react-icons/bs";
-import { GrUserAdmin } from "react-icons/gr";
+
 import { AiOutlineBars } from "react-icons/ai";
-import { BsGraphUp } from "react-icons/bs";
-import { NavLink } from "react-router-dom";
+
 import { Link } from "react-router-dom";
-import { MdHomeWork } from "react-icons/md";
+
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
 import MenuItem from "./Menu/MenuItem";
@@ -18,7 +16,7 @@ import UserMenu from "./Menu/UserMenu";
 const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
-  const [role, isLoading] = useRole();
+  const [role] = useRole();
   // console.log(role, isLoading);
 
   // Sidebar Responsive Handler
@@ -81,8 +79,8 @@ const Sidebar = () => {
             {/*  Menu Items */}
             <nav>
               {role === "admin" && <AdminMenu></AdminMenu>}
-              {role === "surveyor" && <SurveyorMenu></SurveyorMenu> }
-              {role === "user" && <UserMenu></UserMenu> }
+              {role === "surveyor" && <SurveyorMenu></SurveyorMenu>}
+              {role === "user" && <UserMenu></UserMenu>}
             </nav>
           </div>
         </div>

@@ -9,14 +9,14 @@ import {
 import { Fragment } from "react";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import useRole from "../../hooks/useRole";
 
-const HostModal = ({
-  closeModal,
-  isOpen,
-  modalHandlerSurveyor,
-  modalHandlerProUser,
-}) => {
+const HostModal = ({ closeModal, isOpen }) => {
   const navigate = useNavigate();
+
+  const [role] = useRole();
+
+  console.log(role);
 
   const handleNavigation = (type) => {
     closeModal();
@@ -61,14 +61,16 @@ const HostModal = ({
                   as="h3"
                   className="text-lg font-medium text-center leading-6 text-gray-900"
                 >
-                  Become 
+                  Become
                 </DialogTitle>
                 <div className="flex items-center justify-center">
                   {/* pro user */}
                   <div className="">
                     <div className="mt-2">
                       <h3 className="font-bold text-black">Pro User</h3>
-                      <p className="text-sm text-gray-500 pt-3">User can comment</p>
+                      <p className="text-sm text-gray-500 pt-3">
+                        User can comment
+                      </p>
                     </div>
 
                     <div className="flex mt-2 justify-around">
@@ -89,7 +91,9 @@ const HostModal = ({
                   <div>
                     <div className="mt-2">
                       <h3 className="font-bold text-black">Surveyor</h3>
-                      <p className="text-sm text-gray-500 pt-3">Can create survey</p>
+                      <p className="text-sm text-gray-500 pt-3">
+                        Can create survey
+                      </p>
                       <p className="text-sm text-gray-500 pt-1">
                         Surveyor Dashboard
                       </p>
@@ -98,9 +102,15 @@ const HostModal = ({
                     <div className="flex mt-2 justify-around">
                       <button
                         type="button"
-                        // onClick={modalHandlerSurveyor}
                         onClick={() => handleNavigation("surveyor")}
-                        className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+                        disabled={role === "admin" || role === "surveyor"}
+                        className={`inline-flex justify-center rounded-md border border-transparent  px-4 py-2 text-sm font-medium  focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+                          ${
+                            role === "admin" || role === "surveyor"
+                              ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                              : "bg-green-100 text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
+                          }
+                          `}
                       >
                         Continue
                       </button>
